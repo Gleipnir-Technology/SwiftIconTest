@@ -1,21 +1,26 @@
-//
-//  ContentView.swift
-//  IconTester
-//
-//  Created by Eli Ribble on 8/12/25.
-//
-
 import SwiftUI
 
+struct IconDescription: Identifiable {
+    let id = UUID()
+    
+    let isSystem: Bool
+    let name: String
+}
+
+let ICONS = [
+    IconDescription(isSystem: true, name: "calendar.and.person"),
+    IconDescription(isSystem: true, name: "shareplay"),
+    IconDescription(isSystem: false, name: "mosquito.sideview"),
+]
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List(ICONS) { icon in
+                NavigationLink(destination: IconDetailView(icon: icon)) {
+                    Image(systemName: icon.name)
+                }
+            }
         }
-        .padding()
     }
 }
 
