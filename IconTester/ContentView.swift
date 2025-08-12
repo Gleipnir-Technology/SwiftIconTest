@@ -17,7 +17,11 @@ struct ContentView: View {
         NavigationStack {
             List(ICONS) { icon in
                 NavigationLink(destination: IconDetailView(icon: icon)) {
-                    Image(systemName: icon.name)
+                    if icon.isSystem {
+                        Image(systemName: icon.name)
+                    } else {
+                        Image(uiImage: UIImage(named: icon.name)!)
+                    }
                 }
             }
         }
