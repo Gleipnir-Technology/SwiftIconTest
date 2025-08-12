@@ -31,7 +31,7 @@ struct IconRow : View {
         if icon.isSystem {
             Image(systemName: icon.name)
         } else {
-            Image(uiImage: UIImage(named: icon.name)!)
+            Image(icon.name)
         }
     }
     
