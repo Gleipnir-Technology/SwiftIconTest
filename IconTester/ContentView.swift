@@ -5,6 +5,14 @@ struct IconDescription: Identifiable {
     
     let isSystem: Bool
     let name: String
+    
+    var image: Image { get {
+        if self.isSystem {
+            Image(systemName: self.name)
+        } else {
+            Image(self.name)
+        }
+    }}
 }
 
 let ICONS = [
@@ -27,17 +35,9 @@ struct ContentView: View {
 struct IconRow : View {
     var icon: IconDescription
     
-    var image: Image {
-        if icon.isSystem {
-            Image(systemName: icon.name)
-        } else {
-            Image(icon.name)
-        }
-    }
-    
     var body: some View {
         HStack {
-            image.font(.system(size: 48, weight: .regular))
+            icon.image.font(.system(size: 48, weight: .regular))
             Text(icon.name)
         }
     }
