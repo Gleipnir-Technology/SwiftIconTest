@@ -30,9 +30,11 @@ struct IconDetailView: View {
                 icon.image.font(.system(size: 32, weight: weight.weight))
                 Text(weight.name)
             }
-        }
+        }.navigationTitle(icon.name)
     }
 }
 #Preview {
-    IconDetailView(icon: ICONS[0])
+    NavigationStack {
+        IconDetailView(icon: ICONS[0])
+    }
 }
