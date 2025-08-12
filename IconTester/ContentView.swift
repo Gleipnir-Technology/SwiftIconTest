@@ -26,11 +26,19 @@ struct ContentView: View {
 
 struct IconRow : View {
     var icon: IconDescription
-    var body: some View {
+    
+    var image: Image {
         if icon.isSystem {
             Image(systemName: icon.name)
         } else {
             Image(uiImage: UIImage(named: icon.name)!)
+        }
+    }
+    
+    var body: some View {
+        HStack {
+            image.font(.system(size: 48, weight: .regular))
+            Text(icon.name)
         }
     }
 }
